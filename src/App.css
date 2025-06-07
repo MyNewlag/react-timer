@@ -1,0 +1,84 @@
+
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+/* تنظیمات کلی صفحه */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+  transition:  0.3s ease-in-out;
+  padding: 20px;
+}
+
+/* استایل تایمر */
+.timer {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #ffad41, #2b64ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* استایل دکمه‌ها */
+button {
+  padding: 12px 25px;
+  font-size: 1.3rem;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* دکمه استارت */
+.start {
+  background-color: #73cc88;
+  color: white;
+}
+
+/* دکمه توقف */
+.stop {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* دکمه ریست */
+.restart {
+  background-color: #007bff;
+  color: white;
+}
+
+/* دکمه تغییر رنگ */
+.tagle {
+  background-color: #ff9800;
+  color: white;
+}
+
+/* استایل لیست تایمر */
+.list-timer {
+  margin-top: 25px;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
