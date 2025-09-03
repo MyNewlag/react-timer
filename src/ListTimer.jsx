@@ -6,14 +6,13 @@ import { TestContext } from "./TestContext";
 export default function ListTimer(){
     
   const context =useContext(TestContext);
-
-
   
-        
     return(
         <div>
-            {context.timeArr.map((arr)=>(
-                <Item key={Math.random()}> {arr} </Item>
+            {context.timeArr.map(time=>(
+               <Item >
+                {time}
+               </Item>
             ))}
         
         </div>

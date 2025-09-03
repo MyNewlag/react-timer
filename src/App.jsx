@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Timer from './Timer';
 
-import Start from './Start';
-import Stop from './Stop';
-import Restart from './Restart';
-import Tagle from './Tagle';
+
 import { TestContext } from './TestContext';
 import ListTimer from './ListTimer';
+import Button from './button';
 
 function App() {
 
@@ -15,72 +13,57 @@ function App() {
   const [min, setMin] = useState(0);
   const [hour, setHour] = useState(0);
   const [isRunning, setIsRunning]=useState(false)
-  const [isTagle, setIsTagle]=useState(false)
+  const [isTaggle, setIsTaggle]=useState(false)
   const [timeArr, setTimeArr]=useState([])
 
-  
-  useEffect(()=>{
-    let interval;
-    if(isRunning){              
-      interval= setInterval(() => {
-        setSec(provSec=>provSec+1)
-      }, 1000)
-    }else{
-      clearInterval(interval)
-    }
-    return () => clearInterval(interval);
-  },[isRunning])
 
 
-  useEffect(()=>{
-    if(sec>=60){
-      setSec(0)
-      setMin(proveMin=>proveMin+1)
-    }
-  },[sec])
-
-
-  useEffect(()=>{
-    if(min>=60){
-      setMin(0)
-      setHour(proveHour=>proveHour+1)
-    }
-  },[min])
-
- 
-  const togle=()=>setIsTagle(prov=>!prov)
-  const start=()=> setIsRunning(true)
-  const stop=()=> setIsRunning(false)
-
-  const restart=(()=>{
-      setIsRunning(false)
-      setSec(0)
-      setMin(0)
-      setHour(0)
-    })
-
-  
-
-    return (
-
-      <TestContext.Provider value={{timeArr:timeArr,setTimeArr:setTimeArr}} >
-
-    <div className='main' style={{backgroundColor:isTagle ? "red" : "white"}} >
-      
-        <Timer  sec={sec} min={min} hour={hour}  />
-        <Start onClick={start} />
-        <Stop onClick={stop} />
-        <Restart onClick={restart} />
-        <Tagle onClick={togle} isTagle={isTagle} />
-
-        <ListTimer />
-       
-    </div>
-
-      </TestContext.Provider>
-
-  ); 
+const Start =()=>{
+  setIsRunning(true)
 }
 
+const Stop =()=>{
+  setIsRunning(false)
+}
+
+const Restart =()=>{
+  setIsRunning(false)
+  setHour(0)
+  setMin(0)
+  setSec(0)
+}
+
+const setTheme =()=>{
+  setIsTaggle(isTaggle=>!isTaggle)
+}
+
+
+useEffect(()=>{
+  let interval;
+  if (isRunning) {
+   interval= setInterval(() => {
+      setSec(sec=>sec+1)
+    }, 1000);
+  }else{
+      clearInterval(interval)
+    }
+    return()=>clearInterval(interval)
+},[isRunning])
+
+
+
+return(
+<TestContext.Provider  value={{timeArr:timeArr,setTimeArr:setTimeArr}}>
+    <div className='main' style={{backgroundColor:isTaggle ? "red" : "white"}}>
+      <Timer sec={sec} min={min} hour={hour} setSec={setSec} setMin={setMin} setHour={setHour}/>
+      <Button name='start' onClick={Start} isTaggle={isTaggle}/>
+      <Button name='stop'  onClick={Stop} isTaggle={isTaggle}/>
+      <Button name='restart' onClick={Restart} isTaggle={isTaggle}/>
+      <Button name='set Theme' onClick={setTheme} isTaggle={isTaggle}/>
+      <ListTimer/>
+  </div>
+</TestContext.Provider>
+)
+}
 export default App;
 
