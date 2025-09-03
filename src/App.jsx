@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Timer from './assets/Timer';
+import Timer from './Timer';
 
 import Start from './Start';
 import Stop from './Stop';
-import Restart from './assets/Restart';
-import Tagle from './assets/Tagle';
+import Restart from './Restart';
+import Tagle from './Tagle';
 import { TestContext } from './TestContext';
 import ListTimer from './ListTimer';
 
@@ -24,7 +24,7 @@ function App() {
     if(isRunning){              
       interval= setInterval(() => {
         setSec(provSec=>provSec+1)
-      }, 10)
+      }, 1000)
     }else{
       clearInterval(interval)
     }
